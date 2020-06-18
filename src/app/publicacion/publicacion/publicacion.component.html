@@ -1,0 +1,55 @@
+
+<div class="col-md-4" *ngFor="let ruts of rutas">
+    <div class="card">
+      <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+        <button class="btn btn-danger" (click)="deleteRuta(ruts._id)">
+          <i class="far fa-trash-alt"></i>
+        </button>
+        <a [routerLink]= "['/rutacrear/edit', ruts._id]" class="btn btn-info btn-block w-50">
+              EDITAR RUTA
+        </a>
+     </div>
+
+      <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+        {{ ruts.titulo | slice:0:40}}...
+      </div>
+      
+    </div>
+</div>
+
+
+<div class="col-md-4" *ngFor="let evs of eventos">
+  <div class="card">
+    <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+      <button class="btn btn-danger" (click)="deleteRuta(evs._id)">
+        <i class="far fa-trash-alt"></i>
+      </button>
+      <a [routerLink]= "['/eventocrear/edit', evs._id]" class="btn btn-info btn-block w-50">
+            EDITAR EVENTO
+      </a>
+   </div>
+
+    <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+      {{ evs.nombre | slice:0:40}}...
+    </div>
+    
+  </div>
+</div>
+
+<div class="col-md-4" *ngFor="let lgs of lugares">
+  <div class="card">
+    <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+      <button class="btn btn-danger" (click)="deleteRuta(lgs._id)">
+        <i class="far fa-trash-alt"></i>
+      </button>
+      <a [routerLink]= "['/lugarcrear/edit', lgs._id]" class="btn btn-info btn-block w-50">
+            EDITAR LUGAR
+      </a>
+   </div>
+
+    <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+      {{ lgs.nombre | slice:0:40}}...
+    </div>
+    
+  </div>
+</div>

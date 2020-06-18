@@ -1,0 +1,116 @@
+<div class="row" style="margin-top: 1em;">
+  <div class="col-md-6 mx-auto">
+    <div class="card">
+      <div style="text-align: center;">
+        <img src="/assets/image_signup.png" alt="registar" />
+      </div>
+      <div class="card-header" style="text-align: center; font-size: x-large;">
+        <p><b>Registrar</b></p>
+      </div>
+      <div class="card-body">
+        <div class="alert alert-danger" role="alert" *ngIf="messageError">
+          {{ messageError }}
+        </div>
+        <form autocomplete="off" [formGroup]="user" (ngSubmit)="guardar()">
+          <div>
+            <div class="form-group row">
+              <div class="col">
+                <input
+                  class="form-control"
+                  type="text"
+                  placeholder="Username"
+                  formControlName="username"
+                  [class.is-invalid]="usuarioNoValido"
+                  autofocus
+                />
+                <small *ngIf="usuarioNoValido" class="text-danger">
+                  Ingrese username
+                </small>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="col">
+                <input
+                  class="form-control"
+                  type="text"
+                  placeholder="Nombre"
+                  formControlName="nombre"
+                  [class.is-invalid]="nombreNoValido"
+                />
+                <small *ngIf="nombreNoValido" class="text-danger">
+                  Ingrese nombre
+                </small>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="col">
+                <input
+                  class="form-control"
+                  type="text"
+                  placeholder="Apellido"
+                  formControlName="apellido"
+                  [class.is-invalid]="apellidoNoValido"
+                />
+                <small *ngIf="apellidoNoValido" class="text-danger">
+                  Ingrese apellido
+                </small>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="col">
+                <input
+                  class="form-control"
+                  type="email"
+                  placeholder="Correo electrónico"
+                  formControlName="email"
+                  [class.is-invalid]="correoNoValido"
+                />
+                <small *ngIf="correoNoValido" class="text-danger">
+                  Correo no Valido
+                </small>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="col">
+                <input
+                  class="form-control"
+                  type="password"
+                  placeholder="Contraseña"
+                  formControlName="password"
+                  [class.is-invalid]="pass1NoValido"
+                />
+                <small *ngIf="pass1NoValido" class="text-danger">
+                  Tu contraseña debe tener mas de 5 caracteres
+                </small>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="col">
+                <input
+                  class="form-control"
+                  type="password"
+                  placeholder="Repita contraseña"
+                  [class.is-invalid]="pass2NoValido"
+                  formControlName="pass2"
+                />
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="input-group col">
+                <button type="submit" class="btn btn-outline-primary btn-block">
+                  Registrarse
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+[
+  {
+    "name": "Turismo",
+    "redirectTo": "/lugarlistar/Turismo"
+  },
+  {
+    "name": "Playas",
+    "redirectTo": "/lugarlistar/Playas"
+  }
+  ,
+  {
+    "name": "Hoteles",
+    "redirectTo": "/lugarlistar/Hoteles"
+  }
+]

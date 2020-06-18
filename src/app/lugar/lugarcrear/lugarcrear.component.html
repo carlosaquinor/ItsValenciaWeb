@@ -1,0 +1,142 @@
+<div class="row">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+                  <form autocomplete="off" [formGroup]="lugar" (ngSubmit)="edit ? update() : guardar()">
+                        <div class="form-group row">
+                          <div class="col">
+                            <button class="float-right" type="button" (click)="addClick()"> + Agregar Imagen</button>
+                          </div>                      
+                        </div>
+
+                          <div class="form-group">
+                            <div formArrayName = "imagen">
+                              <div class="form-group row" *ngFor= "let item of imagen.controls; let i = index">
+                                <div class="col">
+                                  <input
+                                    class="form-control"
+                                    type="text"
+                                    placeholder="Ingrese el URL de la Imagen del Lugar"
+                                    [formControlName]="i"
+                                  />  
+                                </div>
+                                <button type="button" (click)="deleteClick(i)" class="float-right" *ngIf="i >= 1" > - Eliminar Imagen</button> 
+                              </div>
+                            </div>
+                          </div>
+                        
+                          <div class="form-group">
+                            <select  class="form-control" formControlName="categoria">
+                              <option value="">Seleccionar categoria</option>
+                              <option *ngFor="let cat of categorias">{{cat.name}}</option>
+                            </select>
+                          </div>
+  
+                         <div class="form-group row">
+                          <div class="col">
+                            <input
+                              class="form-control"
+                              type="text"
+                              placeholder="Ingrese el Titulo"
+                              formControlName="nombre"
+                              [class.is-invalid]="tituloNoValido"
+                            />
+                            <small *ngIf="tituloNoValido" class="text-danger">
+                              Ingrese Titulo
+                            </small>
+                          </div>
+                         </div>
+  
+                         <div class="form-group row">
+                          <div class="col">
+                            <textarea
+                              class="form-control"
+                              placeholder="Descripcion del Lugar"
+                              formControlName="descripcion"
+                              [class.is-invalid]="descripcionNoValido"
+                              rows="15"
+                            > </textarea>
+                            <small *ngIf="descripcionNoValido" class="text-danger">
+                              Ingrese la descripcion
+                            </small>
+                          </div>
+                         </div>
+  
+                        <div class="form-group row"> 
+                          <div class="col">
+                            <input  placeholder="Fecha de Publicación"
+                            class="form-control" formControlName= "fecha"
+                            matInput [matDatepicker]="dp" 
+                            style="display: block" disabled>
+                            <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                            <mat-datepicker #dp disabled="false"></mat-datepicker>
+                          </div>
+                        </div>
+
+                        <div class="form-group row">
+                          <div class="col">
+                            <input
+                              class="form-control"
+                              type="text"
+                              placeholder="Direccion del Lugar"
+                              formControlName="direccion"
+                              [class.is-invalid]="direccionNoValido"
+                            >
+                            <small *ngIf="direccionNoValido" class="text-danger">
+                              Ingrese la Direccion
+                            </small>
+                          </div>
+                         </div>
+                        <div class="form-group row">
+                          <div class="input-group col">
+                            <button type="submit" class="btn btn-outline-primary btn-block">
+                              Guadar Lugar
+                            </button>
+                          </div>
+                        </div>
+                    </form>
+              </div>
+        </div>
+    </div>
+
+    <div class="col-md-6" style="border: slategrey solid;">
+      <div *ngIf="lugar.value.imagen[0] === ''">
+        <img class="d-block w-100 h-25" src="/assets/noimagen.png">
+      </div>
+      <div id="cl" class="carousel slide" data-ride="carousel" *ngIf="lugar.value.imagen[0] != ''">
+        <div class="carousel-inner">
+          <div class="carousel-item" *ngFor="let image of lugar.value.imagen let i = index" [ngClass]="{'active' : i == 0}">
+            <img class="d-block w-100 h-25" [src]="image" alt="First slide">
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#cl" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#cl" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+        <div class="col" size-md="6" size-lg="5" size-xs="12">
+          <div class="card-header bg-dark text-white text-center" >
+            <h3>{{ lugar.value.nombre }}</h3>
+          </div>
+          <div class="row" style="background-color: #f5b361; margin-left: .1em; margin-right: .1em;">
+            <div class="d-inline-block float-left">
+              &nbsp; <label for="text1">Categoria: <b>{{ lugar.value.categoria }}</b></label>
+            </div>
+            <div class="d-inline-block float-right" style="margin-left: auto;">
+            <label for="text2">Fecha de Publicación: <b>{{ lugar.value.fecha | date: 'dd-MM-yyyy'}}</b></label> &nbsp;
+           </div>
+          </div>
+          <div class="card card-body" style="border: none;">
+            <textarea style="border: none;" rows="15" disabled>{{ lugar.value.descripcion }}</textarea>
+          </div>
+          <div class="row" style="background-color: #f5b361;">        
+            <label class="float-left" style="margin-left: 1em;" for="text4">Direccion del Evento: <b>{{ lugar.value.direccion}}</b></label> &nbsp;
+          </div>
+        </div>    
+      </div>
+    
+</div>

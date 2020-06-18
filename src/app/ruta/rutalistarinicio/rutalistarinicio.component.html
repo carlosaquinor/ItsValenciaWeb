@@ -1,0 +1,14 @@
+<div class="col-md-4" *ngFor="let ruts of rutas" style="margin-bottom: 1em;">
+  <div class="card" style="background:#f5b361;" >
+    <img class="card-img-top" [src]="ruts.imagen" (click)="getDetails(ruts._id)"/>
+    <div class="card-header bg-dark text-white ">
+        {{ ruts.titulo | slice:0:40}}...
+    </div>
+    <div>
+        <p style="align-items: flex-end;">{{ ruts.autor }}</p>
+      <div class="float-right" style="margin-right: 0.5rem;">
+        <label>{{ ruts.fecha | date: "dd-MM-yyyy" }}</label>
+      </div>
+    </div>
+  </div>
+</div>

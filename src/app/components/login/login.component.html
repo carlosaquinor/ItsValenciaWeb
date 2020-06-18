@@ -1,0 +1,50 @@
+
+<div class="row" style="margin-top: 1em;">
+    <div class="col-md-6 mx-auto">
+        <div class="card">
+            <div class="card-header" style="text-align: center;">
+                <img src="/assets/login.png" alt="login">
+            </div>
+            <div class="card-body">
+              <div class="alert alert-danger" role="alert" *ngIf="messageError">{{ messageError }}</div>
+                <form autocomplete="off" [formGroup]="user" (ngSubmit)="guardar()">
+                    <div>
+                      <div class="form-group row">
+                        <div class="col">
+                          <input
+                            class="form-control"
+                            type="email"
+                            placeholder="Correo electrónico"
+                            formControlName="email"
+                            [class.is-invalid]="correoNoValido"
+                          />
+                          <small *ngIf="correoNoValido" class="text-danger">
+                            Formato de Correo no valido
+                          </small>
+                        </div>
+                      </div>
+          
+                      <div class="form-group row">
+                        <div class="col">
+                          <input
+                            class="form-control"
+                            type="password"
+                            placeholder="Contraseña"
+                            formControlName="password"
+                            [class.is-invalid]="pass1NoValido"
+                          />
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="input-group col">
+                          <button type="submit" class="btn btn-outline-primary btn-block">
+                            Iniciar Sessión
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+            </div>
+        </div>
+    </div>
+</div>

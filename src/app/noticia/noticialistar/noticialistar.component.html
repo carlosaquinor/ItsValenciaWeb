@@ -1,0 +1,20 @@
+<div class="col-md-4" *ngFor="let ns of noticias" style="margin-bottom: 1em;">
+    <div class="card" style="background:#f5b361;">
+      <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+        <button class="btn btn-danger" (click)="delete(ns._id)">
+          <i class="far fa-trash-alt"></i>
+        </button>
+      </div>
+        <img class="card-img-top" [src]="ns.imagen[0]">
+      <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+        {{ ns.titulo  | slice:0:40 }}...
+      </div>
+      <div class="form-group">
+        <p style="text-align: right; margin: .3em;"> {{ ns.fecha | date: "dd-MM-yyyy" }} </p>
+        <a [routerLink]= "['/noticiacrear/edit', ns._id]" class="btn btn-info btn-block">
+          EDITAR NOTICIA
+        </a>
+      </div>
+    </div>
+</div>
+

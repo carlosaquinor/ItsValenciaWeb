@@ -1,0 +1,149 @@
+<div class="row">
+  <div #mapElement id="map"></div>
+    <div class="col-md-7 mx-auto mt-2">
+      <div class="card">
+        <div class="card-body">
+                <form autocomplete="off" [formGroup]="ruta" (ngSubmit)="edit ? updateRuta() : guardar()">
+                      <div class="form-group row">
+                        <div class="col">
+                          <button type="button" (click)="addClick()"> + Agregar Parada</button>
+                        </div>                      
+                      </div>
+                        <div class="form-group row">
+                            <div class="col">
+                              <input
+                                class="form-control"
+                                type="text"
+                                placeholder="Punto de Salida"
+                                formControlName="origen"
+                                [class.is-invalid]="nombreNoValido"
+                              />
+                              <small *ngIf="nombreNoValido" class="text-danger">
+                                Ingrese el punto de salida
+                              </small>
+                            </div>
+                          </div>
+
+                          <div formArrayName = "paradas">
+                            <div class="form-group row" *ngFor= "let item of paradas.controls; let i = index">
+                              <div class="col">
+                                <input
+                                  class="form-control"
+                                  type="text"
+                                  placeholder="Parada"
+                                  [formControlName]="i"
+                                  [class.is-invalid]="nombreNoValido"
+                                />  
+                              </div>
+                              <button type="button" (click)="deleteClick(i)" class="float-right"> - Eliminar Parada</button> 
+                            </div>
+                          </div>
+
+                          <div class="form-group row">
+                            <div class="col">
+                              <input
+                                class="form-control"
+                                type="text"
+                                placeholder="Punto de Destino"
+                                formControlName="destino"
+                                [class.is-invalid]="NoValido"
+                              />
+                              <small *ngIf="NoValido" class="text-danger">
+                                Ingrese el punto de salida
+                              </small>
+                            </div>
+                          </div> 
+
+                          <div class="alert alert-danger" role="alert" *ngIf="messageError">
+                            {{ messageError }}
+                          </div>
+                      <div class="form-group row">
+                        <div class="input-group col">
+                          <button type="button" class="btn btn-outline-primary btn-block" (click)="calculateAndDisplayRoute()">
+                            Calcular Ruta
+                          </button>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <div class="col">
+                          <input
+                            class="form-control"
+                            type="text"
+                            placeholder="Ingrese el URL de la Imagen de la actividad"
+                            formControlName="imagen"
+                            [class.is-invalid]="imagenNoValido"
+                          />
+                          <small *ngIf="imagenNoValido" class="text-danger">
+                            Ingrese URL de la Imagen
+                          </small>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <div class="col">
+                          <input
+                            class="form-control"
+                            type="text"
+                            placeholder="Titulo de la actividad"
+                            formControlName="titulo"
+                            [class.is-invalid]="tituloNoValido"
+                          />
+                          <small *ngIf="tituloNoValido" class="text-danger">
+                            Ingrese Titulo
+                          </small>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <div class="col">
+                          <textarea
+                            class="form-control"
+                            placeholder="Descripcion de la actividad"
+                            formControlName="descripcion"
+                            [class.is-invalid]="descripcionNoValido"
+                            rows="15"
+                          > </textarea>
+                          <small *ngIf="descripcionNoValido" class="text-danger">
+                            Ingrese URL de la Imagen
+                          </small>
+                        </div>
+                      </div>
+
+                      <div class="form-group row"> 
+                        <div class="col">
+                          <input  placeholder="Fecha de actividad"
+                          class="form-control" formControlName= "fecha"
+                          matInput [matDatepicker]="dp" 
+                          style="display: block" disabled>
+                          <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                          <mat-datepicker #dp disabled="false"></mat-datepicker>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <div class="col">
+                          <input
+                            class="form-control"
+                            type="text"
+                            placeholder="Nombre del contacto: Telefono o correo electronico"
+                            formControlName="contacto"
+                            [class.is-invalid]="contactoNoValido"
+                          />
+                          <small *ngIf="contactoNoValido" class="text-danger">
+                            Ingrese Contacto
+                          </small>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="input-group col">
+                          <button type="submit" class="btn btn-outline-primary btn-block">
+                            Guadar Ruta
+                          </button>
+                        </div>
+                      </div>
+                  </form>
+             </div>
+        </div>
+    </div>
+</div>

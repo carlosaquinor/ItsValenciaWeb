@@ -1,0 +1,25 @@
+<div style="border: slategrey solid;">
+    <div> <img [src]="eventos.imagen" alt=""></div>
+    <div class="col" size-md="6" size-lg="5" size-xs="12">
+      <div class="card-header bg-dark text-white text-center" >
+        <h3>{{ eventos.nombre }}</h3>
+      </div>
+      <div class="row" style="background-color: #f5b361; margin-left: .1em; margin-right: .1em;">
+        <label style="margin-left: 1em;" for="text1">Fecha de Inicio: <b>{{ eventos.inicio | date: 'dd-MM-yyyy HH:mm'}}</b></label> &nbsp;
+        
+        <label style="margin-left: 1em;" for="text2" 
+        *ngIf="eventos.final != null">Fecha de Final: <b>{{ eventos.final | date: 'dd-MM-yyyy HH:mm'}}</b></label> &nbsp;
+
+        <label style="margin-left: 1em;" for="text3">Coste: <b>{{ eventos.coste }}</b></label> &nbsp;
+      </div>
+      <div class="card card-body" style="border: none;">
+        <textarea style="border: none;" rows="15" disabled>{{ eventos.descripcion }}</textarea>
+      </div>
+      <div class="row" style="background-color: #f5b361;">        
+        <label class="float-left" style="margin-left: 1em;" for="text4">Direccion del Evento: <b>{{ eventos.direccion}}</b></label> &nbsp;
+
+        <label style="margin-left: 1em;" for="text">Organizador: <b>{{ eventos.organizador }}</b></label>&nbsp;
+      </div>
+    </div>
+</div>
+  

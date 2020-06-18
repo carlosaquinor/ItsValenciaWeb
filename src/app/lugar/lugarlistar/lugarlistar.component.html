@@ -1,0 +1,19 @@
+<div class="col-md-4" *ngFor="let lg of lugares">
+    <div class="card" style="background:#f5b361;">
+      <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+        <button class="btn btn-danger" (click)="delete(lg._id)">
+          <i class="far fa-trash-alt"></i>
+        </button>
+      </div>
+        <img class="card-img-top" [src]="lg.imagen[0]">
+      <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+        {{ lg.nombre | slice:0:40 }}...
+      </div>
+      <div class="form-group">
+        <p style="text-align: right; margin: .3em;"> {{ lg.fecha | date: "dd-MM-yyyy" }} </p>
+        <a [routerLink]= "['/lugarcrear/edit', lg._id]" class="btn btn-info btn-block">
+          EDITAR LUGAR
+        </a>
+      </div>
+    </div>
+</div>

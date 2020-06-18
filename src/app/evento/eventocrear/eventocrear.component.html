@@ -1,0 +1,164 @@
+<div class="row">
+<div class="col-md-6">
+  <div class="card">
+    <div class="card-body">
+      <form autocomplete="off"[formGroup]="evento" (ngSubmit)="edit ? update() : guardar()">
+        <div class="form-group row">
+          <div class="col">
+            <input
+              class="form-control"
+              type="text"
+              placeholder="Ingrese el URL de la Imagen del Evento"
+              formControlName="imagen"
+              [class.is-invalid]="imagenNoValido"
+            />
+            <small *ngIf="imagenNoValido" class="text-danger">
+              Ingrese URL de la Imagen
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col">
+            <input
+              class="form-control"
+              type="text"
+              placeholder="Titulo del Evento"
+              formControlName="nombre"
+              [class.is-invalid]="tituloNoValido"
+            />
+            <small *ngIf="tituloNoValido" class="text-danger">
+              Ingrese Titulo
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col">
+            <textarea
+              class="form-control"
+              placeholder="Descripcion del Evento"
+              formControlName="descripcion"
+              [class.is-invalid]="descripcionNoValido"
+              rows="15"
+            >
+            </textarea>
+            <small *ngIf="descripcionNoValido" class="text-danger">
+              Ingrese URL de la Imagen
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col">
+            <input
+              class="form-control"
+              type="text"
+              placeholder="Direccion del Evento"
+              formControlName="direccion"
+              [class.is-invalid]="direccionNoValido"
+            />
+            <small *ngIf="direccionNoValido" class="text-danger">
+              Ingrese Titulo
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col">
+              <Label>Fecha de Inicio</Label>
+            <input
+              type="datetime-local"
+              class="form-control"
+              [min]="minDate" max="2300-12-31"
+              formControlName="inicio"/>
+              <div>
+                <input type="checkbox" formControlName="showEnd"/> &nbsp;
+                <Label> ¿Tiene una Fecha fin el Evento? </Label>
+              </div>
+              
+          </div>
+
+          <div class="col" *ngIf="evento.value.showEnd || evento.value.final">
+            <Label>Fecha de Final</Label>
+          <input
+            type="datetime-local"
+            class="form-control"
+            [min]="evento.value.inicio" max="2300-12-31"
+            formControlName="final"/>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col">
+            <input
+              class="form-control"
+              type="text"
+              placeholder="Coste del Evento"
+              formControlName="coste"
+              [class.is-invalid]="NoValido"
+            />
+            <small *ngIf="NoValido" class="text-danger">
+              Ingrese Coste del Evento
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col">
+            <input
+              class="form-control"
+              type="text"
+              placeholder="Nombre del Organizador: Telefono o correo electronico"
+              formControlName="organizador"
+              [class.is-invalid]="contactoNoValido"
+            />
+            <small *ngIf="contactoNoValido" class="text-danger">
+              Ingrese Organizador
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="input-group col">
+            <button type="submit" class="btn btn-outline-primary btn-block">
+              Guadar Evento
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-6" style="border: slategrey solid;">
+  <div>
+    <div *ngIf="evento.value.imagen === ''"> 
+      <img class="d-block w-100 h-25" src="/assets/noimagen.png" alt="">
+    </div>
+    <div *ngIf="evento.value.imagen != ''"> 
+      <img class="d-block w-100 h-25" [src]="evento.value.imagen" alt="">
+    </div>
+    <div class="card-header bg-dark text-white text-center" >
+      <h3>{{ evento.value.nombre }}</h3>
+    </div>
+    <div class="row" style="background-color: #f5b361; margin-left: .1em; margin-right: .1em;">
+      <label class="float-left" style="margin-left: 1em;" for="text1">Fecha de Inicio: <b>{{ evento.value.inicio | date: 'dd-MM-yyyy HH:mm'}}</b></label> &nbsp;
+      
+      <label class="float-right" style="margin-left: 1em;" for="text2" 
+      *ngIf="evento.value.final != ''">Fecha de Final: <b>{{ evento.value.final | date: 'dd-MM-yyyy HH:mm'}}</b></label> &nbsp;
+
+      <label class="float-right" style="margin-left: 1em;" for="text3">Coste: <b>{{ evento.value.coste }}</b></label> &nbsp;
+    </div>
+    <div class="card card-body" style="border: none;">
+      <textarea style="border: none;" rows="15" disabled>{{ evento.value.descripcion }}</textarea>
+    </div>
+    <div class="row" style="background-color: #f5b361;">        
+      <label class="float-left" style="margin-left: 1em;" for="text4">Direccion del Evento: <b>{{ evento.value.direccion}}</b></label> &nbsp;
+
+      <label style="margin-left: 1em;" for="text">Organizador: <b>{{ evento.value.organizador }}</b></label>&nbsp;
+    </div>
+  </div>
+</div>
+</div>
+

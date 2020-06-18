@@ -1,0 +1,13 @@
+<div class="col-md-4" *ngFor="let lg of lugares" style="margin-bottom: 1em;">
+    <div class="card" style="background:#f5b361;" >
+      <img class="card-img-top" [src]="lg.imagen[0]" (click)="getDetails(lg._id)"/>
+      <div class="card-header bg-dark text-white ">
+          {{ lg.nombre | slice:0:40}}...
+      </div>
+      <div>
+        <div class="float-right" style="margin-right: 0.5rem;">
+          <label>{{ lg.fecha | date: "dd-MM-yyyy" }}</label>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,110 @@
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container">
+    <img src="/assets/logo.png" alt="logo">
+    <a class="navbar-brand" style="font-size: xx-large" href="/inicio"> <b>It's Valencia </b></a>
+    <button class="navbar-toggler order-first" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mr-auto">
+        <ng-container *ngIf="!authService.loggedIn(); else logged">
+        <li class="nav-item">
+          <a class="nav-link"routerLinkActive="active" href="/inicio">Eventos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" href="/rutalistarinicio">Rutas</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Lugares
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown" >
+            <a class="dropdown-item" *ngFor="let item of listadoLugar" [routerLink]="item.redirectTo" >{{ item.name }}</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" href="/noticialistarinicio">Noticias</a>
+        </li>
+        </ng-container>
+        <ng-template #logged>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Eventos
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/eventocrear">Crear Evento</a>
+              <a class="dropdown-item" href="/eventolistar">Eliminar o Editar</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Rutas
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/rutalistarinicio">Listar Rutas</a>
+              <a class="dropdown-item" href="/rutacrear">Crear Ruta</a>
+              <a class="dropdown-item" href="/rutalistar">Eliminar o Editar</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Lugares </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle">Listar Lugares</a>
+                <ul class="dropdown-menu">
+                  <li *ngFor="let placer of listadoLugar" ><a class="dropdown-item" [routerLink]="placer.redirectTo">{{ placer.name }}</a></li>
+                </ul>
+              </li>
+              <li class="dropdownmenu">
+                <a class="dropdown-item" href="/lugarcrear">Crear Lugar</a>
+              </li>
+              <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle">Eliminar o Editar</a>
+                <ul class="dropdown-menu">
+                  <li *ngFor="let placer of listadoLugares" ><a class="dropdown-item" [routerLink]="placer.redirectTo">{{ placer.name }}</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Noticias </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li class="dropdownmenu">
+                <a class="dropdown-item" href="/noticialistarinicio">Listar Noticias</a>
+              </li>
+              <li class="dropdownmenu">
+                <a class="dropdown-item" href="/noticiacrear">Crear Noticia</a>
+              </li>
+              <li class="dropdownmenu">
+                <a class="dropdown-item" href="/noticialistar">Eliminar o Editar</a>
+              </li>
+            </ul>
+          </li>
+        </ng-template>
+      </ul>
+    </div>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <ng-container *ngIf="!authService.loggedIn(); else loggedIn">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/login" routerLinkActive="active"> <b>Login</b></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/registrar" routerLinkActive="active"> <b>Registrar</b></a>
+          </li>
+        </ng-container>
+        <ng-template #loggedIn>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/publicacion" routerLinkActive="active"> <b>Publiciones</b></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" style="cursor: pointer;" (click)="authService.logout()"><b>Cerrar Sesión</b></a>
+          </li>
+        </ng-template>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container p-4">
+  <router-outlet></router-outlet>
+</div>

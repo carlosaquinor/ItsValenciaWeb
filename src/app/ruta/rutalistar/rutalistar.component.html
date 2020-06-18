@@ -1,0 +1,23 @@
+<div class="col-md-4" *ngFor="let ruts of rutas">
+    <div class="card" style="background:#f5b361;">
+      <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+        <button class="btn btn-danger" (click)="deleteRuta(ruts._id)">
+          <i class="far fa-trash-alt"></i>
+        </button>
+      </div>
+        <img class="card-img-top" [src]="ruts.imagen">
+      <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+        {{ ruts.titulo | slice:0:40}}...
+      </div>
+      <div class="form-group">
+        <p style="text-align: right; margin: .3em;"> {{ ruts.fecha | date: "dd-MM-yyyy" }} </p>
+        <a [routerLink]= "['/rutacrear/edit', ruts._id]" class="btn btn-info btn-block">
+          EDITAR RUTA
+        </a>
+      </div>
+    </div>
+</div>
+
+
+
+
